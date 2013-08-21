@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNW.TextGeneration", "Source\TNW.TextGeneration\TNW.TextGeneration.csproj", "{99E89167-8538-48DA-B08D-1DB4AF4FC60E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNW.TextGeneration.Specs", "Source\TNW.TextGeneration.Specs\TNW.TextGeneration.Specs.csproj", "{FF5BC84D-1FF3-4BD4-B855-2C4F42AA253C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99E89167-8538-48DA-B08D-1DB4AF4FC60E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E89167-8538-48DA-B08D-1DB4AF4FC60E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E89167-8538-48DA-B08D-1DB4AF4FC60E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E89167-8538-48DA-B08D-1DB4AF4FC60E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF5BC84D-1FF3-4BD4-B855-2C4F42AA253C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF5BC84D-1FF3-4BD4-B855-2C4F42AA253C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF5BC84D-1FF3-4BD4-B855-2C4F42AA253C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF5BC84D-1FF3-4BD4-B855-2C4F42AA253C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

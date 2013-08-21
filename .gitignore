@@ -1,0 +1,10 @@
+*.userprefs
+packages
+.DS_Store
+_ReSharper.*
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.orig
+!*/lib/*/*
