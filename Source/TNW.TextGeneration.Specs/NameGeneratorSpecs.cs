@@ -87,16 +87,16 @@ namespace TNW.TextGeneration.Specs
       };
 
       WordAnalyzer.Analyze("Adam", "Alan", "Anthony", "Brendan", "Chris", "Doug", "Jace", "James", "Jason", "Jennifer", "Jessica", "John", "Kene",
-                           "Kenny", "Keshav", "Mark", "Matthew", "Randall", "Riccardo", "Ryan", "Sharique", "Steve", "Tej", "Todd", "Tom");
+                           "Kenny", "Keshav", "Mark", "Matthew", "Randall", "Ricardo", "Ryan", "Sharique", "Steve", "Tej", "Todd", "Tom");
 
       BuildNamesBuilder();
 
       var names = NamesBuilder.Build().Take(50).Select(name => name.Capitalize()).ToArray();
-      Expect(names, EquivalentTo(new[] { "Alatthne", "Alanifes", "Jaso", "Anth", "Riccamatt", "Breste", "Jess", "Marav", "Rannnif", "Jenya", "Stesonyan",
-                                         "Kenicand", "Kentomall", "Johrisiqu", "Kend", "Kejaso", "Jenny", "Stevenny", "Jalllan", "Randala", "Ranyark",
-                                         "Ryace", "Jasoue", "Tesha", "Tejanda", "Chrannnif", "Stevessi", "Tevera", "Alaccchri", "Jacannif", "Kenni", "Marife",
-                                         "Johad", "Ryama", "Kendall", "Rand", "Manda", "Briqu", "Mat", "Douenda", "Jenn", "Chatth", "Alalan", "Kenyani",
-                                         "Maricc", "Adall", "Kest", "Janife", "Kentho", "Jachri" }));
+      Expect(names, EquivalentTo(new[] { "Alatth", "Shar", "Alanifes", "Jaso", "Anth", "Ricantod", "Breste", "Jess", "Marav", "Rannnif", "Jenya",
+                                         "Stesonyan", "Kenicesha", "Kentom", "Shardohris", "Sthnyaca", "Johris", "Anthariq", "Randam", "Sharan", 
+                                         "Randala", "Ranyark", "Ryace", "Jasoue", "Tesha", "Tejanda", "Chrannnif", "Stevessi", "Tevera", "Alacari", 
+                                         "Jacannif", "Kenni", "Marife", "Johad", "Ryama", "Kendall", "Rand", "Manda", "Briquene", "Douenda", "Jenn", 
+                                         "Chatth", "Alalan", "Kenyani", "Maricala", "Kest", "Janife", "Kentho", "Jachri", "Doujace" }));
     }
   }
 }
