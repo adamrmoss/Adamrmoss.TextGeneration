@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace TNW.TextGeneration
 {
@@ -12,6 +9,15 @@ namespace TNW.TextGeneration
     {
       var capitalizedInitialLetter = text.Substring(0, 1).ToUpper();
       return capitalizedInitialLetter + text.Substring(1);
+    }
+
+    [StringFormatMethod("me")]
+    public static string FormatWith(this string me, params object[] args)
+    {
+      if (me == null)
+        return null;
+      var tmp = String.Format(me, args);
+      return tmp;
     }
   }
 }
