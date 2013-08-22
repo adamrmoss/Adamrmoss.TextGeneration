@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace TNW.TextGeneration.Specs
 {
@@ -26,30 +27,25 @@ namespace TNW.TextGeneration.Specs
       Expect(WordAnalyzer.WordLengthFrequency.Count, EqualTo(1));
       Expect(WordAnalyzer.WordLengthFrequency[6], EqualTo(1));
 
-      Expect(WordAnalyzer.SubwordFrequency.Count, EqualTo(9));
-      Expect(WordAnalyzer.SubwordFrequency["ba"], EqualTo(1));
-      Expect(WordAnalyzer.SubwordFrequency["an"], EqualTo(2));
-      Expect(WordAnalyzer.SubwordFrequency["na"], EqualTo(2));
-      Expect(WordAnalyzer.SubwordFrequency["ban"], EqualTo(1));
-      Expect(WordAnalyzer.SubwordFrequency["ana"], EqualTo(2));
-      Expect(WordAnalyzer.SubwordFrequency["nan"], EqualTo(1));
-      Expect(WordAnalyzer.SubwordFrequency["bana"], EqualTo(1));
-      Expect(WordAnalyzer.SubwordFrequency["anan"], EqualTo(1));
-      Expect(WordAnalyzer.SubwordFrequency["nana"], EqualTo(1));
+      Expect(WordAnalyzer.SubwordFollowingFrequency.Count, EqualTo(6));
 
-      Expect(WordAnalyzer.CharacterFollowingFrequency.Count, EqualTo(3));
+      var baFollowers = new Dictionary<string, int> { { "na", 1 }, { "nan", 1 }, { "nana", 1 } };
+      Expect(WordAnalyzer.SubwordFollowingFrequency["ba"], EquivalentTo(baFollowers));
 
-      var followingBFrequency = WordAnalyzer.CharacterFollowingFrequency['b'];
-      Expect(followingBFrequency.Count, EqualTo(1));
-      Expect(followingBFrequency['a'], EqualTo(1));
+      var anFollowers = new Dictionary<string, int> { { "an", 1 }, { "ana", 1 } };
+      Expect(WordAnalyzer.SubwordFollowingFrequency["an"], EquivalentTo(anFollowers));
 
-      var followingAFrequency = WordAnalyzer.CharacterFollowingFrequency['a'];
-      Expect(followingAFrequency.Count, EqualTo(1));
-      Expect(followingAFrequency['n'], EqualTo(2));
+      var naFollowers = new Dictionary<string, int> { { "na", 1 } };
+      Expect(WordAnalyzer.SubwordFollowingFrequency["na"], EquivalentTo(naFollowers));
 
-      var followingNFrequency = WordAnalyzer.CharacterFollowingFrequency['n'];
-      Expect(followingNFrequency.Count, EqualTo(1));
-      Expect(followingNFrequency['a'], EqualTo(2));
+      var banFollowers = new Dictionary<string, int> { {"an", 1}, { "ana", 1 } };
+      Expect(WordAnalyzer.SubwordFollowingFrequency["ban"], EquivalentTo(banFollowers));
+
+      var anaFollowers = new Dictionary<string, int> { { "na", 1 } };
+      Expect(WordAnalyzer.SubwordFollowingFrequency["ana"], EquivalentTo(anaFollowers));
+
+      var banaFollowers = new Dictionary<string, int> { { "na", 1 } };
+      Expect(WordAnalyzer.SubwordFollowingFrequency["bana"], EquivalentTo(banaFollowers));
     }
 
     [Test]

@@ -19,8 +19,7 @@ namespace TNW.TextGeneration
 
     private int[] WordLengthChoiceArray;
     private string[] InitialSubwordChoiceArray;
-    private Dictionary<char, string[]> LeadingCharacterSubwordChoiceArray;
-    private Dictionary<char, char[]> CharacterFollowingChoiceArrays;
+    private Dictionary<string, string[]> SubwordFollowingChoiceArrays;
     
     public NamesBuilder() {
       this.MaxNumberOfAttempts = StandardMaxNumberOfAttempts;
@@ -57,10 +56,7 @@ namespace TNW.TextGeneration
     private void BuildChoiceArrays() {
       this.WordLengthChoiceArray = this.WordAnalyzer.WordLengthFrequency.ToChoiceArray();
       this.InitialSubwordChoiceArray = this.WordAnalyzer.InitialSubwordFrequency.ToChoiceArray();
-      this.LeadingCharacterSubwordChoiceArray = this.WordAnalyzer.SubwordFrequency.GroupBy(kvp => kvp.Key[0])
-                                                                        .ToDictionary(grouping => grouping.Key, grouping => grouping.ToDictionary(kvp => kvp.Key, kvp => kvp.Value)
-                                                                                                                                    .ToChoiceArray()); 
-      this.CharacterFollowingChoiceArrays = this.WordAnalyzer.CharacterFollowingFrequency.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToChoiceArray());
+      this.SubwordFollowingChoiceArrays = this.WordAnalyzer.SubwordFollowingFrequency.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToChoiceArray());
     }
 
     private void BuildRandomNumberGenerator() {
@@ -71,26 +67,25 @@ namespace TNW.TextGeneration
       var stopLength = this.WordLengthChoiceArray.GetRandomElement(this.Random);
 
       var stringBuilder = new StringBuilder();
-      var terminatingCharacter = (char?) null;
-      while (stringBuilder.Length < stopLength && (terminatingCharacter == null || this.CharacterFollowingChoiceArrays.ContainsKey(terminatingCharacter.Value))) {
-        var newSubword = this.GetNewSubword(terminatingCharacter);
+      var terminatingSubword = (string) null;
+      while (stringBuilder.Length < stopLength && (terminatingSubword == null || this.SubwordFollowingChoiceArrays.ContainsKey(terminatingSubword))) {
+        var newSubword = this.GetNewSubword(terminatingSubword);
 
-        terminatingCharacter = newSubword.Last();
+        terminatingSubword = newSubword;
         stringBuilder.Append(newSubword);
       }
 
       return stringBuilder.ToString();
     }
 
-    private string GetNewSubword(char? terminatingCharacter) {
-      if (terminatingCharacter == null) {
+    private string GetNewSubword(string terminatingSubword) {
+      if (terminatingSubword == null) {
         return this.InitialSubwordChoiceArray.GetRandomElement(this.Random);
       } else {
-        var leadingCharacter = this.CharacterFollowingChoiceArrays[terminatingCharacter.Value].GetRandomElement(this.Random);
-        if (this.LeadingCharacterSubwordChoiceArray.ContainsKey(leadingCharacter)) {
-          return this.LeadingCharacterSubwordChoiceArray[leadingCharacter].GetRandomElement(this.Random);
+        if (this.SubwordFollowingChoiceArrays.ContainsKey(terminatingSubword)) {
+          return this.SubwordFollowingChoiceArrays[terminatingSubword].GetRandomElement(this.Random);
         } else {
-          return this.InitialSubwordChoiceArray.GetRandomElement(this.Random);
+          return "-" + this.InitialSubwordChoiceArray.GetRandomElement(this.Random);
         }
       }
     }

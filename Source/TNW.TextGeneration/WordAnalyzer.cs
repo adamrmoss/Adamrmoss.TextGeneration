@@ -11,15 +11,13 @@ namespace TNW.TextGeneration
 
     public Dictionary<int, int> WordLengthFrequency { get; private set; }
     public Dictionary<string, int> InitialSubwordFrequency { get; private set; }
-    public Dictionary<string, int> SubwordFrequency { get; private set; }
-    public Dictionary<char, Dictionary<char, int>> CharacterFollowingFrequency { get; private set; }
+    public Dictionary<string, Dictionary<string, int>> SubwordFollowingFrequency { get; private set; }
 
     public WordAnalyzer() {
       this.AnalyzedWords = new HashSet<string>();
       this.WordLengthFrequency = new Dictionary<int, int>();
       this.InitialSubwordFrequency = new Dictionary<string, int>();
-      this.SubwordFrequency = new Dictionary<string, int>();
-      this.CharacterFollowingFrequency = new Dictionary<char, Dictionary<char, int>>();
+      this.SubwordFollowingFrequency = new Dictionary<string, Dictionary<string, int>>();
     }
 
     public void Analyze(params string[] words) {
@@ -36,29 +34,28 @@ namespace TNW.TextGeneration
       word = word.ToLower();
 
       this.WordLengthFrequency.Tally(word.Length);
-      this.NoteSubwordFrequency(word);
-      this.NoteCharacterFollowingFrequency(word);
-
+      this.Scan(word);
       this.AnalyzedWords.Add(word);
     }
 
-    private void NoteSubwordFrequency(string word) {
-      for (var subwordLength = this.MinSubwordLength; subwordLength <= this.MaxSubwordLength; subwordLength++) {
-        for (var subwordStartIndex = 0; subwordStartIndex <= word.Length - subwordLength; subwordStartIndex++) {
-          var subword = word.Substring(subwordStartIndex, subwordLength);
-          this.SubwordFrequency.Tally(subword);
-          if (subwordStartIndex == 0) {
-            this.InitialSubwordFrequency.Tally(subword);
+    private void Scan(string word) {
+      for (var firstSubwordLength = this.MinSubwordLength; firstSubwordLength <= this.MaxSubwordLength; firstSubwordLength++) {
+        for (var secondSubwordLength = this.MinSubwordLength; secondSubwordLength <= this.MaxSubwordLength; secondSubwordLength++) {
+          for (var startIndex = 0; startIndex <= word.Length - firstSubwordLength - secondSubwordLength; startIndex++) {
+            var firstSubword = word.Substring(startIndex, firstSubwordLength);
+            var secondSubword = word.Substring(startIndex + firstSubwordLength, secondSubwordLength);
+            if (startIndex == 0) {
+              this.InitialSubwordFrequency.Tally(firstSubword);
+            }
+            NoteSubwordFollowingFrequency(firstSubword, secondSubword);
           }
         }
       }
     }
 
-    private void NoteCharacterFollowingFrequency(string word) {
-      for (var firstLetterIndex = 0; firstLetterIndex < word.Length - 1; firstLetterIndex++) {
-        var frequenciesFollowingThisCharacter = this.CharacterFollowingFrequency.FailproofLookup(word[firstLetterIndex]);
-        frequenciesFollowingThisCharacter.Tally(word[firstLetterIndex + 1]);
-      }
+    private void NoteSubwordFollowingFrequency(string firstSubword, string secondSubword) {
+      var currentFollowingFrequency = SubwordFollowingFrequency.FailproofLookup(firstSubword);
+      currentFollowingFrequency.Tally(secondSubword);
     }
   }
 }
