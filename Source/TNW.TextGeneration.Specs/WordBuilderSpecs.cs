@@ -8,10 +8,10 @@ using NUnit.Framework;
 namespace TNW.TextGeneration.Specs
 {
   [TestFixture]
-  public class NamesBuilderSpecs : AssertionHelper
+  public class WordBuilderSpecs : AssertionHelper
   {
     private WordAnalyzer WordAnalyzer;
-    private NamesBuilder NamesBuilder;
+    private WordBuilder WordBuilder;
     private IEnumerable<string> Names;
 
     private void BuildWords(int minSubwordLength, int maxSubwordLength, params string[] words) {
@@ -21,12 +21,12 @@ namespace TNW.TextGeneration.Specs
       };
       WordAnalyzer.Analyze(words);
 
-      NamesBuilder = new NamesBuilder {
+      this.WordBuilder = new WordBuilder {
         Seed = 69,
         WordAnalyzer = WordAnalyzer,
         MaxNumberOfAttempts = 20,
       };
-      Names = this.NamesBuilder.Build();
+      Names = this.WordBuilder.Build();
     }
 
     [Test]

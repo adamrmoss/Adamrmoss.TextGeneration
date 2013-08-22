@@ -6,7 +6,7 @@ using GuardClaws;
 
 namespace TNW.TextGeneration
 {
-  public class NamesBuilder
+  public class WordBuilder
   {
     private const int StandardMaxNumberOfAttempts = 10;
 
@@ -21,7 +21,7 @@ namespace TNW.TextGeneration
     private string[] InitialSubwordChoiceArray;
     private Dictionary<string, string[]> SubwordFollowingChoiceArrays;
     
-    public NamesBuilder() {
+    public WordBuilder() {
       this.MaxNumberOfAttempts = StandardMaxNumberOfAttempts;
       this.DisallowedNames = new HashSet<string>();
     }
