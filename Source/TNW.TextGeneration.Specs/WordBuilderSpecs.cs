@@ -15,18 +15,14 @@ namespace TNW.TextGeneration.Specs
     private IEnumerable<string> Names;
 
     private void BuildWords(int minSubwordLength, int maxSubwordLength, params string[] words) {
-      WordAnalyzer = new WordAnalyzer {
+      this.WordAnalyzer = new WordAnalyzer {
         MinSubwordLength = minSubwordLength,
         MaxSubwordLength = maxSubwordLength,
       };
-      WordAnalyzer.Analyze(words);
+      this.WordAnalyzer.Analyze(words);
 
-      this.WordBuilder = new WordBuilder {
-        Seed = 69,
-        WordAnalyzer = WordAnalyzer,
-        MaxNumberOfAttempts = 20,
-      };
-      Names = this.WordBuilder.Build();
+      this.WordBuilder = new WordBuilder(this.WordAnalyzer);
+      this.Names = this.WordBuilder.Build();
     }
 
     [Test]
@@ -36,8 +32,9 @@ namespace TNW.TextGeneration.Specs
       //       1 character subwords, we can only generate 47 new words, several of which have the characteristic
       //       awkward consonant clusters we see with 1 character subwords
       this.BuildWords(1, 4, "mad", "sad", "bananas", "and", "damn", "cocoa");
+      Expect(this.WordBuilder.ChoiceArrayMemorySize, EqualTo(544));
 
-      var words = Names.Take(50).ToArray();
+      var words = this.Names.Take(50).ToArray();
       Expect(words.Length, EqualTo(47));
       Expect(words, EquivalentTo(new[] { "mada", "bana", "sada", "ban", "coa", "coco", "dana", "banana", "damnanas", "coan", "ananas", "amad",
                                          "mnandamn", "dam", "coc", "amn", "sananas", "mnana", "banan", "bandamn", "danan", "coanas", "adam", 
@@ -50,8 +47,9 @@ namespace TNW.TextGeneration.Specs
     public void It_can_make_some_new_continents_and_oceans()
     {
       this.BuildWords(1, 4, "Africa", "America", "Asia", "Arctic", "Atlantic", "Australia", "Europe", "Indian", "Pacific");
+      Expect(this.WordBuilder.ChoiceArrayMemorySize, EqualTo(2044));
 
-      var names = Names.Take(400).Select(name => name.Capitalize()).ToArray();
+      var names = this.Names.Take(400).Select(name => name.Capitalize()).ToArray();
       // NOTE: This training set is rich enough for 363 names
       Expect(names.Length, EqualTo(363));
       Expect(names, EquivalentTo(new[] { "Acifi", "Asiant", "Eurica", "Asicifi", "Atla", "Andian", "Australi", "Euro", "Arcandian", "Indiantic",
@@ -106,8 +104,9 @@ namespace TNW.TextGeneration.Specs
                        "Louisiana", "Maine", "Maryland", "Massachusetts", "Mexico", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana",
                        "Nebraska", "Nevada", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode", "Tennessee", "Texas", "Utah", "Vermont",
                        "Virginia", "Washington", "Wisconsin", "Wyoming", "York");
+      Expect(this.WordBuilder.ChoiceArrayMemorySize, EqualTo(5852));
 
-      var names = Names.Take(500).Select(name => name.Capitalize()).ToArray();
+      var names = this.Names.Take(500).Select(name => name.Capitalize()).ToArray();
       Expect(names.Length, EqualTo(479));
       Expect(names, EquivalentTo(new[] { "Illinoi", "Arolora", "Georginia", "Massachuse", "Missipp", "Florid", "Missour", "Connectic", "Louisia",
                                          "Massach", "Tennesse", "Minnesot", "Arkans", "Lorida", "Mexiconnec", "Virgi", "Mexiconsi", "Massou", 
@@ -173,8 +172,9 @@ namespace TNW.TextGeneration.Specs
     {
       this.BuildWords(1, 3, "Adam", "Alan", "Anthony", "Brendan", "Chris", "Doug", "Jace", "James", "Jason", "Jennifer", "Jessica", "John", "Kene",
                        "Kenny", "Keshav", "Mark", "Matthew", "Randall", "Ricardo", "Ryan", "Sharique", "Steve", "Tej", "Todd", "Tom");
+      Expect(this.WordBuilder.ChoiceArrayMemorySize, EqualTo(2908));
 
-      var names = Names.Take(1000).Select(name => name.Capitalize()).ToArray();
+      var names = this.Names.Take(1000).Select(name => name.Capitalize()).ToArray();
       Expect(names.Length, EqualTo(918));
       Expect(names, EquivalentTo(new[] { "Adama", "Shar", "Kenn", "Jalan", "Bren", "Kejes", "Brenny", "Jesha", "Menny", "Richr", "Jessic", 
                                          "Alannife", "Shacariq", "Ariquesha", "Kenndan", "Adandoug", "Jen", "Call", "Andala", "Stenny", "Jamar", 

@@ -43,10 +43,11 @@ namespace TNW.TextGeneration
         for (var secondSubwordLength = this.MinSubwordLength; secondSubwordLength <= this.MaxSubwordLength; secondSubwordLength++) {
           for (var startIndex = 0; startIndex <= word.Length - firstSubwordLength - secondSubwordLength; startIndex++) {
             var firstSubword = word.Substring(startIndex, firstSubwordLength);
-            var secondSubword = word.Substring(startIndex + firstSubwordLength, secondSubwordLength);
             if (startIndex == 0) {
               this.InitialSubwordFrequency.Tally(firstSubword);
             }
+
+            var secondSubword = word.Substring(startIndex + firstSubwordLength, secondSubwordLength);
             NoteSubwordFollowingFrequency(firstSubword, secondSubword);
           }
         }
