@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>guard_claws</name>
+    </assembly>
+    <members>
+        <member name="T:GuardClaws.Reflect">
+            <summary>
+            Helper class for the IL-based strongly-typed reflection
+            </summary>
+            <remarks>This class is not supported by Silverlight 2.0</remarks>
+        </member>
+        <member name="M:GuardClaws.Reflect.Variable``1(System.Func{``0})">
+            <summary>
+            Retrieves via IL the information of the <b>local</b> variable passed in the expression.
+            <code>
+            var myVar = "string";
+            var info = Reflect.Variable(() =&gt; myVar)
+            </code>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="expression">The expression containing the local variable to reflect.</param>
+            <returns>information about the variable</returns>
+        </member>
+    </members>
+</doc>

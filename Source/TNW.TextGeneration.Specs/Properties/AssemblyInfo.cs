@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TNW.NameGenerator.Specs")]
+[assembly: AssemblyTitle("TNW.TextGeneration.Specs")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TNW.NameGenerator.Specs")]
+[assembly: AssemblyProduct("TNW.TextGeneration.Specs")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("73352100-bc45-4d61-a47c-a0c1766e53cf")]
+[assembly: Guid("ead2e2e8-65b4-4990-828c-fc21a5f292af")]
 
 // Version information for an assembly consists of the following four values:
 //

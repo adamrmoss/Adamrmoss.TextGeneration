@@ -1,5 +1,4 @@
 *.userprefs
-packages
 .DS_Store
 _ReSharper.*
 [Bb]in/
@@ -7,4 +6,3 @@ _ReSharper.*
 *.user
 *.suo
 *.orig
-!*/lib/*/*
