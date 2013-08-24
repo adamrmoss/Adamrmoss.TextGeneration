@@ -7,7 +7,7 @@ using GuardClaws;
 
 namespace TNW.TextGeneration
 {
-  public class WordBuilder : IEnumerable<string>
+  public class WordBuilder
   {
     private const int StandardMaxNumberOfAttempts = 20;
     private const int StandardSeed = 69;
@@ -117,14 +117,6 @@ namespace TNW.TextGeneration
       return terminatingSubword == null ?
         this.initialSubwordChoiceArray.GetRandomElement(this.random) :
         this.subwordFollowingChoiceArrays[terminatingSubword].GetRandomElement(this.random);
-    }
-
-    IEnumerator IEnumerable.GetEnumerator() {
-      return GetEnumerator();
-    }
-
-    public IEnumerator<string> GetEnumerator() {
-      throw new NotImplementedException();
     }
   }
 }
