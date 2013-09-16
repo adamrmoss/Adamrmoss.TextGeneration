@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("TNW.TextGeneration.Specs")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Specs for TNW.TextGeneration")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("The Network, Inc.")]
 [assembly: AssemblyProduct("TNW.TextGeneration.Specs")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
