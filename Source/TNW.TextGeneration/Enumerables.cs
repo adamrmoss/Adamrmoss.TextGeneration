@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TNW.TextGeneration
 {
-  public static class EnumerableExtensions
+  public static class Enumerables
   {
     public static T GetRandomElement<T>(this IEnumerable<T> sequence, Random random)
     {
@@ -15,5 +13,10 @@ namespace TNW.TextGeneration
 
       return sequenceAsArray[index];
     }
+
+    public static IEnumerable<int> Infinite() {
+      for (var i = 0;; i++)
+        yield return i;
+    } 
   }
 }
