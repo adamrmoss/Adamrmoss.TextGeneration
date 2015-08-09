@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNW.TextGeneration", "Source\TNW.TextGeneration\TNW.TextGeneration.csproj", "{912914FD-8542-4641-8CE3-1897F4E94669}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNW.TextGeneration", "TNW.TextGeneration\TNW.TextGeneration.csproj", "{912914FD-8542-4641-8CE3-1897F4E94669}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNW.TextGeneration.Specs", "Source\TNW.TextGeneration.Specs\TNW.TextGeneration.Specs.csproj", "{5E3AE1C0-300C-49B4-8BE0-969F7C436BC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNW.TextGeneration.Specs", "TNW.TextGeneration.Specs\TNW.TextGeneration.Specs.csproj", "{5E3AE1C0-300C-49B4-8BE0-969F7C436BC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
