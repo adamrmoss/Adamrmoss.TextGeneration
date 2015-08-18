@@ -26,96 +26,109 @@ namespace TNW.TextGeneration.Specs
     public void It_can_make_some_new_continents()
     {
       var sampleCountryNames = new[] {
-        "Africa", "America", "Asia", "Australia", "Europe", "Gondwana", "Laurasia", "Pangaea", "Pannotia", "Rodinia", "Columbia", "Kenorland", "Nena",
-        "Ur", "Vaalbara", "Arctica", "Arctica", "Atlantica", "Pacifica", "Atlantica", "Avalonia", "Baltica", "Cimmeria", "Congo", "Kalaharia",
-        "Kazakhstania", "Laurentia", "China", "Siberia", "India", "Kerguelia", "Zealandia", "Oceania", "Atlantis", "Kumaria", "Lemuria", "Meropis", "Mu",
-        "Eriador", "EarthSea", "Hyrule", "Narnia", "Freedonia", "Islandia", "Niflheim", "Yggdrasil", "Midgard", "Asgard", "Jotunheim", "Elfheim", "Hel",
-        "Elysium", "Arborea", "Limbo", "Acheron", "Arcadia", "Ecotopia", "Celestia", "Europa", "Teu", "Harbor", "Harbour", "Tif", "Tir", "Echo",
-        "Hinterland", "Brittain", "Caledonia", "California", "Utah", "Persia", "Egypt", "Kush", "Nevada", "Navajo", "Cherokee", "Inuit" };
+        "Acheron", "Africa", "America", "Arborea", "Arcadia", "Arctica", "Asgard", "Asia", "Atlantica", "Atlantis",
+        "Australia", "Avalonia", "Baltica", "Brittain", "Caledonia", "California", "Celestia", "Cherokee", "China",
+        "Cimmeria", "Cincinnati", "Columbia", "Congo", "EarthSea", "Echo", "Ecotopia", "Elfheim", "Elysium",
+        "Eriador", "Europa", "Europe", "Freedonia", "Gondwana", "Harbor", "Harbour", "Hinterland", "Hyrule",
+        "India", "Inuit", "Islandia", "Jotunheim", "Kalaharia", "Kazakhstania", "Kenorland", "Kerguelia",
+        "Kumaria", "Kush", "Laurasia", "Laurentia", "Lemuria", "Limbo", "Meropis", "Midgard", "Narnia", "Navajo",
+        "Nena", "Nevada", "Niflheim", "Oceania", "Pacifica", "Pangaea", "Pannotia", "Persia", "Rodinia", "Siberia",
+        "Siniscalchi", "Utah", "Vaalbara", "Yangon", "Zealandia"
+      };
       this.BuildWords(2, 3, true, sampleCountryNames);
-      this.Expect(this.wordBuilder.ChoiceArrayMemorySize, this.EqualTo(5012));
+      this.Expect(this.wordBuilder.ChoiceArrayMemorySize, this.EqualTo(4988));
 
       var names = Enumerables.Infinite().Select(i => this.wordBuilder.BuildNextWord()).Except(sampleCountryNames).Distinct().Take(265).ToArray();
-      this.Expect(names, this.EquivalentTo(new[] { "Europisland", "Eu", "Midgarctic", "Asgar", "Narniflhei", "Aureedoni", "Cimmerica", "Erica", "Ledonia",
-                                                   "Kumariadonia", "Cheropis", "Arctic", "Oceaniador", "Celestiador", "Ariador", "Atlandia", "Gondiadonia",
-                                                   "Siumbia", "Egyp", "Harbou", "Narniador", "Harbo", "Cherica", "Hariador", "Zealandi", "Atlantic",
-                                                   "Ariadonia", "Siberica", "Limbiadonia", "Kerguelimbo", "Kumari", "Nenarnia", "Arthsea", "Lemurica",
-                                                   "Hyrulemuria", "Zealaharbou", "Lemurentia", "Midgar", "Merittain", "Atlauropis", "Zealantica",
-                                                   "Acherope", "Pannoti", "Eriado", "Persi", "Kenorlandia", "Hyrul", "Elfheron", "Elfhei", "Brittai",
-                                                   "Haria", "Liforni", "Kalaharctica", "Le", "Limbouropia", "Pac", "Afriadia", "Kalaur", "Chinarni",
-                                                   "Europis", "Atlandi", "Jotunhei", "Earthsea", "Harbore", "Laurasil", "Chinui", "Landiadonia",
-                                                   "Ocearthsea", "Kenorlantica", "Colu", "Pannotica", "Arboreania", "Meriadonia", "Pangae", "Arthseania",
-                                                   "Ear", "Rokenor", "Europislandia", "Baltic", "Pan", "Kazakh", "Zea", "Pacimmerica", "Interlandia",
-                                                   "Navaj", "Laurasiberia", "Colum", "Oceart", "Caledoni", "Amersiberia", "Arborlantica", "Rodini",
-                                                   "Elysiu", "Hin", "Nevaalbarnia", "Arcador", "Kazakhsea", "Cadini", "Aureedonia", "Lemuriadonia",
-                                                   "Harborea", "Lemuri", "Ameriador", "Congae", "Aciflheim", "Europislantis", "Cheropi", "Pannorland",
-                                                   "Islandinia", "Kumariador", "Congondwana", "Yggdralia", "Kerguelysium", "Laurenticadinia", "Limbia",
-                                                   "Asgarthsea", "Avalonifl", "Pacific", "Acificadia", "Asiador", "Islantis", "Kazak", "Persiumari",
-                                                   "Cheron", "Califorland", "Kenorea", "Atlandini", "Harboreedon", "Interlantis", "Ledoniadonia",
-                                                   "Islaure", "Gondiadoni", "Brittani", "Celedonia", "Laurentica", "Lanteropi", "Yggdrasium", "Arbour",
-                                                   "Lanteria", "Laure", "Arthse", "Avaltic", "Lanterland", "Atlandinia", "Hyruledonia", "Hintislantis",
-                                                   "Persium", "Siberiado", "Arcalifornia", "Atlanterland", "Ceani", "Narni", "Hinte", "Arc", "Avajotunhei",
-                                                   "Arcadorea", "Yggdra", "Ecotopi", "Ygg", "Australon", "Fric", "Merica", "Afric", "Earthse",
-                                                   "Rodiniador", "Acheropis", "Islantic", "Lantica", "Atland", "Nevador", "Cheropersia", "Avaj",
-                                                   "Zealaharbor", "Islandi", "Acherguelia", "Hariadoni", "Hinterlandia", "Hina", "Ceandini", "Inuittania",
-                                                   "Narniflheim", "Nevadia", "Frica", "Ledoniador", "Afrittain", "Zealaur", "Americalimbo", "Arbor",
-                                                   "Nenarni", "Ealaharbo", "Cimmerittain", "Pacificale", "Celestiadonia", "Kumarctica", "Indinia",
-                                                   "Kenorlania", "Acherokee", "Narniflheron", "Asiadoni", "Meriador", "Asgarctica", "Landiador",
-                                                   "Barasiberia", "Avajotu", "Caledon", "Cherokeedonia", "Cimmeropis", "Asgarca", "Cim", "Zealangae",
-                                                   "Ocea", "Austr", "Navaalbara", "Midgaea", "Niflheron", "Narniadonia", "Aurentica", "Ecotia", "Asil",
-                                                   "Harbourope", "Interland", "Aurasil", "Gondwania", "Interlaur", "Kergueli", "Americ", "Freedoni", "Ely",
-                                                   "Brittania", "Nevajotun", "Af", "Congaea", "Roke", "Arcticalimbo", "Americaledoni", "Califor",
-                                                   "Elfherokee", "Meric", "Bri", "Interlandinia", "Laureedon", "Ka", "Lemur", "Eliadonia", "Harica", "Cel",
-                                                   "Avajotun", "Arniflheim", "Hinterlaur", "Ceanticalifor", "Indiador", "Hariado", "Pann", "Arborealand",
-                                                   "Vaa", "Australifo", "Niflhei", "Ealandinia", "Ocearthse", "Merokee", "Limbourope", "Yg", "Gondwan",
-                                                   "Elia", "Elestia" }));
+      this.Expect(names, this.EquivalentTo(new[] {
+        "Arnia", "Eliador", "Earthse", "Kumarctica", "Kenor", "Kalaharctica", "Ropangondwana", "Zealaur", "Kalah",
+        "Arctic", "Kenorlan", "Baltic", "Rodinuit", "Cimmeriador", "Limborea", "Haria", "Cale", "Kergueli",
+        "Kerguelimb", "Siniscalifor", "Arthsea", "Congondia", "Arcadi", "Valonia", "Ea", "Celestralia", "Barasia",
+        "Siberica", "Yangondia", "Merica", "Atlantic", "Cimmericale", "Europis", "Hinterlandia", "In",
+        "Chinarnia", "Hyrul", "Nevaaledon", "Avalongond", "Kumari", "Niscalchina", "Atlangon", "Australifo",
+        "Rodiniscalc", "Cele", "Cimmer", "Ameriador", "Jotunhei", "Avajo", "Harborea", "Africadinia", "Pacifor",
+        "Acheropis", "Niflheimborea", "Atlango", "Eriadia", "Persinis", "Erongondia", "Hariador", "Meric",
+        "Elfheimbour", "Cinnat", "Gondiador", "Asgarbo", "Europia", "Pacificadia", "Sinis", "Kalaharbou",
+        "Cinnotunheim", "Kazakhst", "Persiberia", "Cheropis", "Rope", "Na", "Pacific", "Navada", "Celestiadonia",
+        "Yango", "Brit", "Cimmeri", "Arniflhei", "Cinnavalonia", "Utaharbour", "Is", "Celemuriador", "Jo",
+        "Zealandi", "Siniscalon", "Celesticale", "Ameriadorea", "Islannotia", "Sium", "Ameriado", "Laharbour",
+        "Atlanticale", "Island", "Afrittai", "Brittai", "Niflhei", "Midgar", "Arbou", "Elysinis", "Kenorlahar",
+        "Australedonia", "Pannotica", "Ealandia", "Lemuri", "Pe", "Calchero", "Ecotopiador", "Hyrulemuria",
+        "Sibersinisca", "Kazakhsta", "Elfherokee", "Iscalemuria", "Avalon", "Lemur", "Ecotopi", "Celestica",
+        "Persiador", "Pangard", "Cheron", "Freedonisc", "Australifor", "Jotunherope", "Arborland", "Americ",
+        "Islandiador", "Jotunhe", "Meropi", "Paciforniador", "Pacifi", "Nevador", "Zealantic", "Ocea", "Vaalongo",
+        "Chersia", "Merittain", "Eric", "Calestrasia", "Celestiador", "Limbiador", "Oceannorla", "Midgarnisca",
+        "Kenotica", "Ropis", "Lemuropia", "Chinavada", "Cific", "Brittania", "Lemurenor", "Pangon", "Siniscalc",
+        "Le", "Nevalonia", "Ropi", "Inuittania", "Persinisc", "Utaharborea", "Indiador", "Pacificalchi",
+        "Kumarbou", "Columbi", "Hina", "Ealandinia", "Vajotunheim", "Yangae", "Meropisca", "Oceandia", "Zealoni",
+        "Balticalchintis", "Cherodiniador", "Landi", "Fric", "Afriador", "Vaalbaralia", "Nevajo", "Congond",
+        "Cheriador", "Aciflheim", "Eriado", "Islanticale", "Paciflhe", "Lemurentia", "Rokee", "Kumarbo", "Afric",
+        "Cheroke", "Meria", "Atlandia", "Elfhei", "Asgaeania", "Columbiador", "Yangondwana", "Zealaharborea",
+        "Eurodinia", "Ealantis", "Rodindia", "Inna", "Cinnatica", "Kerguelestia", "Islangon", "Narnisc",
+        "Narniscalc", "Pacinnati", "Ameriad", "Elestica", "Ceandia", "Amerlandini", "Sinisca", "Calific",
+        "Zealahar", "Ca", "Lantiador", "Inuittain", "Atlaharbo", "Acherope", "Liforniador", "Nenatica",
+        "Achersinis", "Chiniadonia", "Gondwandia", "Yangond", "Kerguel", "Incifica", "Kumariadonia", "Landiador",
+        "Ameropi", "Oceaniador", "Limbourenti", "Siniscalantis", "Atlangae", "Harbo", "Lemurasia", "Oceango",
+        "Harbou", "Niscalchi", "Paciflheim", "Go", "Elysiu", "Navaj", "Liforni", "Cincinnotun", "Rodin",
+        "Cifica", "Cincinnoti", "Arbour", "Cimmeriadonia", "Congondwanti", "Aurasiadonia", "Kenorea",
+        "Rokerguel", "Califica", "Islangae", "Hinter", "Kumarborea", "Frica", "Persiniflhei", "Atlandinia",
+        "Siniscadia", "Atlangaea", "Nenavada", "Hinterlan", "Amerittain", "Kenotia" 
+      }));
     }
 
     [Test]
     public void It_can_make_some_new_states()
     {
-      var sampleStates = new[] { "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Carolina", "Colorado", "Connecticut", "Dakota", "Delaware",
-                                 "Florida", "Georgia", "Hampshire", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Jersey", "Kansas", "Kentucky", 
-                                 "Louisiana", "Maine", "Maryland", "Massachusetts", "Mexico", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana",
-                                 "Nebraska", "Nevada", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode", "Tennessee", "Texas", "Utah", "Vermont",
-                                 "Virginia", "Washington", "Wisconsin", "Wyoming", "York"};
+      var sampleStates = new[] {
+        "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Carolina", "Colorado", "Connecticut", "Dakota",
+        "Delaware", "Florida", "Georgia", "Hampshire", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Jersey",
+        "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Mexico", "Michigan",
+        "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "Ohio", "Oklahoma", "Oregon",
+        "Pennsylvania", "Rhode", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "Wisconsin",
+        "Wyoming", "York"
+      };
       this.BuildWords(2, 3, true, sampleStates);
       this.Expect(this.wordBuilder.ChoiceArrayMemorySize, this.EqualTo(3452));
 
       var names = Enumerables.Infinite().Select(i => this.wordBuilder.BuildNextWord()).Except(sampleStates).Distinct().Take(106).ToArray();
-      this.Expect(names, this.EquivalentTo(new[] { "Arylandia", "Rhod", "Nebrask", "Indiania", "Missipp", "Alask", "Oklaska", "Carolorado", "Hawashing",
-                                                   "Oklaho", "Yominnessee", "Minnesouri", "Minnesot", "Consippi", "Caro", "Georegon", "Nevad",
-                                                   "Idahomarylan", "Georego", "Jerse", "Vermontana", "Kentuck", "Michigania", "Minnessee", "Illinoi",
-                                                   "Carolin", "Pennesota", "Florizona", "Idahoma", "Hawai", "Montucky", "Dakot", "Pennsylvan",
-                                                   "Georegontan", "Hampshigan", "Mexiconsin", "Mainesot", "Nesot", "Missota", "Michiga", "Orado",
-                                                   "Mainiana", "Pennsy", "Florizon", "Calif", "Californiana", "Califo", "Minne", "Delawaine", "Delask",
-                                                   "Connesse", "Orego", "Missour", "Louis", "Utahomin", "Tennevad", "Washingtonne", "Kansaskansa",
-                                                   "Vermontansas", "Illinoississian", "Virgin", "Alabampshire", "Arkansach", "Kansa", "Wyominne",
-                                                   "Vermon", "Alifornia", "Colorad", "Califorado", "Georginia", "Massis", "Dahodelaware", "Dakotana",
-                                                   "Washirginia", "Warego", "Mexichigan", "Virgini", "Michington", "Conn", "Massee", "Necticut",
-                                                   "Wyominnesota", "Caroloridah", "Georginnesot", "Florid", "Oklahomin", "Hampshir", "Missachus",
-                                                   "Aliforni", "Orgia", "Oklah", "Michingtonne", "Aliforniana", "Alabam", "Louiscolorida", "Ohiowashing",
-                                                   "Tennsy", "Arylandian", "Califoridaho", "Minnect", "Rhodelaska", "Hampshiregon", "Massa", "Hawashire",
-                                                   "Nebras", "Missis" }));
+      this.Expect(names, this.EquivalentTo(new[] {
+        "Illindiana", "Pennsylvaniana", "Missour", "Arizon", "Pennesot", "Massachu", "Tennessett", "Ka", "Vermon",
+        "Caroloregon", "Oklahomaine", "Massachigan", "Hampshir", "Indian", "Tennes", "Waii", "Tenne", "Montan",
+        "Virgingtonsin", "Nebrask", "Nesotana", "Da", "Idahoma", "Iowashire", "Carolifornia", "Nevad", "Mexicutah",
+        "Orego", "Arkan", "Mexic", "Iowashin", "Wa", "Orad", "Co", "Montucky", "Utahoma", "Tennessetts",
+        "Marylandiana", "Alask", "Ohiowa", "Pennsaskansas", "Marylvania", "Innessetts", "Minnesot", "Louisian",
+        "Louisiania", "Vermontan", "Wiscon", "Kentuck", "Lorad", "De", "Georgiana", "Virgini", "Vermontana",
+        "Wisconne", "Louis", "Ware", "Alabampshir", "Califoridah", "Pennsylva", "Californi", "Maindiana",
+        "Idahomain", "Delawaii", "Georni", "Michington", "Oklawar", "Georad", "Washiregon", "Missipp", "Virgiana",
+        "Hampshiregon", "Virgin", "Pennsylvan", "Maryla", "Oklahomington", "Iowaregon", "Idahomainnesota",
+        "Hampshing", "Marylva", "Alabamain", "Washire", "Georginia", "Aliforni", "Iowaii", "Pennsylv", "Pennsin",
+        "Wisconsi", "Virginiana", "Louisco", "Iniana", "Yorkansas", "Michigansas", "Louisiansas", "Carolinois",
+        "Dakotana", "Califorida", "Rhodelahode", "Virginois", "Caroli", "Waregon", "Illiforni", "Kentaniana",
+        "Idahodelaware", "Idahode", "Kent"
+      }));
     }
 
     [Test]
     public void It_can_make_some_new_employees()
     {
-      var sampleNames = new[] { "Aaron", "Adam", "Alan", "Alex", "Austin", "Anthony", "Brendan", "Bryan", "Charlie", "Chris", "Doug", "Jace", "James",
-                                "Jason", "Jennifer", "Jessica", "Jim", "John", "Kene", "Kenny", "Keshav", "Mark", "Matthew", "Michael", "Mit", "Prabu",
-                                "Randall", "Ricardo", "Robert", "Roya", "Ryan", "Sharique", "Shawn", "Skipp", "Steve", "Tavares", "Tej", "Todd", "Tom",
-                                "Wright", "Yakov"};
+      var sampleNames = new[] {
+        "Aaron", "Adam", "Alan", "Alex", "Andrew", "Anthony", "Austin", "Brendan", "Brent", "Bryan", "Charlie",
+        "Chris", "Doug", "Emory", "Jace", "James", "Jason", "Jennifer", "Jessica", "Jim", "John", "Kene",
+        "Kenny", "Keshav", "Kevin", "Kyle", "Lynette", "Mark", "Matthew", "Michael", "Mit", "Prabu", "Randall",
+        "Ricardo", "Richard", "Robert", "Rodney", "Roya", "Ryan", "Sharique", "Shawn", "Skipp", "Steve",
+        "Steven", "Tavares", "Tej", "Tim", "Todd", "Tom", "Trent", "Will", "Wright", "Yakov"
+      };
       this.BuildWords(2, 3, true, sampleNames);
-      this.Expect(this.wordBuilder.ChoiceArrayMemorySize, this.EqualTo(1488));
+      this.Expect(this.wordBuilder.ChoiceArrayMemorySize, this.EqualTo(1936));
 
       var names = Enumerables.Infinite().Select(i => this.wordBuilder.BuildNextWord()).Except(sampleNames).Distinct().Take(55).ToArray();
-      this.Expect(names, this.EquivalentTo(new[] { "Austi", "Adames", "Keshaw", "Rabu", "Shariqu", "Jes", "Keshawn", "Jame", "Jessic", "Brendall",
-                                                   "Stev", "Rober", "Michae", "Wrigh", "Skip", "Shaw", "Stin", "Tavare", "Shavarlie", "Charli",
-                                                   "Michris", "Austev", "Chriqu", "Yako", "Anthon", "Micharli", "Matthe", "Ryandall", "Jameshael",
-                                                   "Randal", "Sharlie", "Royakov", "Brennifer", "Jessicard", "Chael", "Matthon", "Tavaron", "Shav",
-                                                   "Kennifer", "Bryakov", "Ricard", "Kesharli", "Chricard", "Bryako", "Bryanthony", "Prab", "Sharight",
-                                                   "Ryanthony", "Shavare", "Jessicares", "Tavarli", "Charique", "Jennife", "Matthony", "Mic" }));
+      this.Expect(names, this.EquivalentTo(new[] { 
+        "Jennif", "Emoryan", "Ricardoug", "Rique", "Bryandrew", "Trennifer", "Tavare", "Tavardo", "Michar",
+        "Emor", "Tavarique", "Matthony", "Randal", "Lynett", "Richae", "Jessic", "Jame", "Micha", "Ya",
+        "Austi", "Rabu", "Tavar", "Michae", "Lynetteven", "Matthe", "Shaw", "Rober", "Riqu", "Adameshav",
+        "Sharicha", "Brendall", "Jessicardo", "Jameshav", "Chard", "Matthon", "Wrigh", "Trenthony", "Andalan",
+        "Michard", "Sharight", "Jamessicard", "Rodne", "Lynetthew", "Keshariq", "Randre", "Anthon", "Charon",
+        "Prab", "Rodnette", "Ryanthon", "Bren", "Andall", "Tavariqu", "Micharlie", "Lynetteve"
+      }));
     }
   }
 }

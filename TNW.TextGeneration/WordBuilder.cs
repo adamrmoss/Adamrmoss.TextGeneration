@@ -51,38 +51,24 @@ namespace TNW.TextGeneration
 
     public string BuildNextWord()
     {
-      var stopLength = this.wordLengthChoiceArray.GetRandomElement(this.random) - ((this.wordAnalyzer.MinSubwordLength + this.wordAnalyzer.MaxSubwordLength) / 2) + 1;
+      var stopLength = this.wordLengthChoiceArray.GetRandomElement(this.random) + 2;
 
-      var stringBuilder = new StringBuilder();
-      var lastSubword = (string) null;
-      var wordIsEndedProperly = false;
-      while (!wordIsEndedProperly && (lastSubword == null || this.subwordFollowingChoiceArrays.ContainsKey(lastSubword))) {
-        var newSubword = this.GetNewSubword(lastSubword);
+      var possibleFirstSubwords = this.initialSubwordChoiceArray.Intersect(this.subwordFollowingChoiceArrays.Keys);
+      var newSubword = possibleFirstSubwords.GetRandomElement(this.random);
+      var stringBuilder = new StringBuilder(newSubword);
+      var longestValidWord = this.wordAnalyzer.FinalSubwords.Contains(newSubword) ? newSubword : null;
 
-        lastSubword = newSubword;
+      while (stringBuilder.Length < stopLength && this.subwordFollowingChoiceArrays.ContainsKey(newSubword)) {
+        newSubword = this.subwordFollowingChoiceArrays[newSubword].GetRandomElement(this.random);
         stringBuilder.Append(newSubword);
 
-        if (stringBuilder.Length > stopLength) {
-          if (!this.wordAnalyzer.FinalSubwords.Contains(lastSubword) && this.wordAnalyzer.SubwordFollowingFrequency.ContainsKey(lastSubword)) {
-            var validFinals = this.wordAnalyzer.SubwordFollowingFrequency[lastSubword].Select(kvp => kvp.Key).Intersect(this.wordAnalyzer.FinalSubwords).ToArray();
-            if (validFinals.Any()) {
-              var final = validFinals.GetRandomElement(this.random);
-              stringBuilder.Append(final);
-            }
-          }
-          wordIsEndedProperly = true;
+        if (this.wordAnalyzer.FinalSubwords.Contains(newSubword)) {
+          longestValidWord = stringBuilder.ToString();
         }
       }
 
-      var nextWord = stringBuilder.ToString();
+      var nextWord = longestValidWord ?? stringBuilder.ToString();
       return this.capitalize ? nextWord.Capitalize() : nextWord;
-    }
-
-    private string GetNewSubword(string terminatingSubword)
-    {
-      return terminatingSubword == null ?
-        this.initialSubwordChoiceArray.GetRandomElement(this.random) :
-        this.subwordFollowingChoiceArrays[terminatingSubword].GetRandomElement(this.random);
     }
   }
 }
