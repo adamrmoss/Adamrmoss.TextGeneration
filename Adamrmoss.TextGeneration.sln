@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adamrmoss.TextGeneration", "Adamrmoss.TextGeneration\Adamrmoss.TextGeneration.csproj", "{912914FD-8542-4641-8CE3-1897F4E94669}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adamrmoss.TextGeneration.Specs", "Adamrmoss.TextGeneration.Specs\Adamrmoss.TextGeneration.Specs.csproj", "{5E3AE1C0-300C-49B4-8BE0-969F7C436BC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F1CB323C-E87B-4FDD-8C88-3D14CC004814}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{912914FD-8542-4641-8CE3-1897F4E94669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{912914FD-8542-4641-8CE3-1897F4E94669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{912914FD-8542-4641-8CE3-1897F4E94669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{912914FD-8542-4641-8CE3-1897F4E94669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E3AE1C0-300C-49B4-8BE0-969F7C436BC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E3AE1C0-300C-49B4-8BE0-969F7C436BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E3AE1C0-300C-49B4-8BE0-969F7C436BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E3AE1C0-300C-49B4-8BE0-969F7C436BC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B2E5799-9952-4C2B-BD1C-44F5D085007F}
+	EndGlobalSection
+EndGlobal
