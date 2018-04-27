@@ -7,12 +7,12 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-    <projectUrl>https://github.com/tnwinc/TNW.TextGeneration</projectUrl>
-    <iconUrl>https://github.com/tnwinc/tnwinc.github.com/blob/master/assets/themes/custom/images/logo.png</iconUrl>
+    <projectUrl>https://github.com/adamrmoss/Adamrmoss.TextGeneration</projectUrl>
+    <iconUrl>https://github.com/adamrmoss/Adamrmoss.TextGeneration/blob/master/Adamrmoss.TextGeneration/TextGeneration.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Improving word finals</releaseNotes>
-    <copyright>Copyright 2015</copyright>
+    <copyright>Copyright 2018</copyright>
     <tags>fake random statistical text name generator generation builder munger</tags>
   </metadata>
 </package>
