@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DictionaryExtensions.cs" />
-    <Compile Include="Enumerables.cs" />
+    <Compile Include="Collections\Bag.cs" />
+    <Compile Include="Collections\DictionaryExtensions.cs" />
+    <Compile Include="Collections\Enumerables.cs" />
+    <Compile Include="Collections\IIndexible.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordAnalyzer.cs" />
     <Compile Include="WordBuilder.cs" />
@@ -56,6 +58,7 @@
   <ItemGroup>
     <None Include="TextGeneration.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
