@@ -38,7 +38,11 @@ namespace Adamrmoss.TextGeneration.Collections
             if (item != null && this.counter.ContainsKey(item))
             {
                 var currentCount = this.counter.FailproofLookup(item);
-                if (currentCount >= 1)
+                if (currentCount == 1)
+                {
+                    this.counter.Remove(item);
+                    return true;
+                } else if (currentCount > 1)
                 {
                     this.counter[item] = currentCount - 1;
                     return true;

@@ -47,6 +47,7 @@
     <Compile Include="Collections\DictionaryExtensions.cs" />
     <Compile Include="Collections\Enumerables.cs" />
     <Compile Include="Collections\IIndexible.cs" />
+    <Compile Include="ProbabilityDistrubution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordAnalyzer.cs" />
     <Compile Include="WordBuilder.cs" />
