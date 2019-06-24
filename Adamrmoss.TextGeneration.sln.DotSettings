@@ -997,4 +997,6 @@ namespace $NAMESPACE$&#xD;
       public ContextBuilder($CUT$ classBeingBuilt) : base(classBeingBuilt) {}&#xD;
     }&#xD;
   }&#xD;
-}</s:String></wpf:ResourceDictionary>
+}</s:String>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Adamrmoss/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Subword/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
