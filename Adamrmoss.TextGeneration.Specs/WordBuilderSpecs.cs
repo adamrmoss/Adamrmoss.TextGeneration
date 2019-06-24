@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -13,16 +14,10 @@ namespace Adamrmoss.TextGeneration.Specs
 
         private const int standardSeed = 69;
 
-        private void BuildWords(int minSubwordLength, int maxSubwordLength, bool capitalize, params string[] words)
+        [SetUp]
+        public void SetUp()
         {
-            this.wordAnalyzer = new WordAnalyzer
-            {
-                MinSubwordLength = minSubwordLength,
-                MaxSubwordLength = maxSubwordLength,
-            };
-            this.wordAnalyzer.Analyze(words);
-
-            this.wordBuilder = new WordBuilder(this.wordAnalyzer, standardSeed).Capitalize(capitalize);
+            Inflector.Inflector.SetDefaultCultureFunc = () => Thread.CurrentThread.CurrentUICulture;
         }
 
         [Test]
@@ -38,7 +33,7 @@ namespace Adamrmoss.TextGeneration.Specs
                 "Nena", "Nevada", "Niflheim", "Oceania", "Pacifica", "Pangaea", "Pannotia", "Persia", "Rodinia", "Siberia",
                 "Siniscalchi", "Utah", "Vaalbara", "Yangon", "Zealandia"
             };
-            this.BuildWords(2, 3, true, sampleCountryNames);
+            this.buildWords(2, 3, true, sampleCountryNames);
             this.wordBuilder.ChoiceArrayMemorySize.Should().Be(4988);
 
             var names = Enumerables.Infinite().Select(i => this.wordBuilder.BuildNextWord()).Except(sampleCountryNames).Distinct().Take(265).ToArray();
@@ -89,7 +84,7 @@ namespace Adamrmoss.TextGeneration.Specs
                 "Pennsylvania", "Rhode", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "Wisconsin",
                 "Wyoming", "York"
             };
-            this.BuildWords(2, 3, true, sampleStates);
+            this.buildWords(2, 3, true, sampleStates);
             this.wordBuilder.ChoiceArrayMemorySize.Should().Be(3452);
 
             var names = Enumerables.Infinite().Select(i => this.wordBuilder.BuildNextWord()).Except(sampleStates).Distinct().Take(106).ToArray();
@@ -120,7 +115,7 @@ namespace Adamrmoss.TextGeneration.Specs
                 "Ricardo", "Richard", "Robert", "Rodney", "Roya", "Ryan", "Sharique", "Shawn", "Skipp", "Steve",
                 "Steven", "Tavares", "Tej", "Tim", "Todd", "Tom", "Trent", "Will", "Wright", "Yakov"
             };
-            this.BuildWords(2, 3, true, sampleNames);
+            this.buildWords(2, 3, true, sampleNames);
             this.wordBuilder.ChoiceArrayMemorySize.Should().Be(1936);
 
             var names = Enumerables.Infinite().Select(i => this.wordBuilder.BuildNextWord()).Except(sampleNames).Distinct().Take(55).ToArray();
@@ -132,6 +127,18 @@ namespace Adamrmoss.TextGeneration.Specs
                 "Michard", "Sharight", "Jamessicard", "Rodne", "Lynetthew", "Keshariq", "Randre", "Anthon", "Charon",
                 "Prab", "Rodnette", "Ryanthon", "Bren", "Andall", "Tavariqu", "Micharlie", "Lynetteve"
             );
+        }
+
+        private void buildWords(int minSubwordLength, int maxSubwordLength, bool capitalize, params string[] words)
+        {
+            this.wordAnalyzer = new WordAnalyzer
+            {
+                MinSubwordLength = minSubwordLength,
+                MaxSubwordLength = maxSubwordLength,
+            };
+            this.wordAnalyzer.Analyze(words);
+
+            this.wordBuilder = new WordBuilder(this.wordAnalyzer, standardSeed).Capitalize(capitalize);
         }
     }
 }
